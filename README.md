@@ -2,7 +2,7 @@
 
 Gazeteci ve dijital medya yöneticisi Tolga Yenigün'ün editorial/dergi estetiğinde tek sayfalık kişisel portföy sitesi.
 
-**Canlı:** https://siracel.github.io/tolga-yenigun/
+**Canlı:** https://tolgayenigun.com/
 
 ## İçerik
 
@@ -10,7 +10,7 @@ Site aşağıdaki bölümlerden oluşur:
 
 - **Hero** — Ad, unvan ve portre
 - **Hakkında** — Kariyer özeti + istatistikler
-- **Deneyim** — 2004'ten bugüne görevler (Cumhuriyet, Milliyet, Hürriyet, Günboyu/Yeniçağ, Kort, Ribaund, TE Bilişim)
+- **Deneyim** — 2004'ten bugüne görevler (Cumhuriyet, Milliyet, Hürriyet, Günboyu, Kort, Ribaund, TE Bilişim)
 - **Röportajlar** — Konuşulan önde gelen isimler
 - **Öne Çıkan Sunum** — Google Keşfet & News haberciliği eğitim programı
 - **Eğitim & Uzmanlık**
@@ -25,6 +25,7 @@ Bağımlılığı olmayan tek dosya (`index.html`). Vanilla HTML, CSS ve JavaScr
 - **Erişilebilirlik:** `skip-link`, `aria-labelledby`, `focus-visible` outline, `prefers-reduced-motion` desteği
 - **Mobil:** 900px altında drawer hamburger menü (backdrop + Escape kapatma)
 - **Performans:** Inline SVG favicon, görsel için `fetchpriority` + boyut atribütleri (CLS önleme)
+- **Dinamik yıl:** `data-years-since` attribute'lu alanlar (hero, hakkında, deneyim başlığı, istatistik, röportajlar) `new Date().getFullYear()` üzerinden kendiliğinden güncellenir. Footer telif yılı da dinamik.
 
 ## Dosya yapısı
 
@@ -51,14 +52,20 @@ python3 -m http.server 8000
 # http://localhost:8000
 ```
 
-## Yayına alma (GitHub Pages)
+## Yayın
 
-1. Repo **Settings → Pages**
-2. **Source:** `Deploy from a branch`
-3. **Branch:** `main` / `/ (root)` → **Save**
-4. Birkaç dakika içinde site yayında olur.
+Site **Vercel** üzerinden **tolgayenigun.com** özel alan adı ile yayındadır.
 
-Custom domain kullanılacaksa Pages ayarlarından ekle ve `index.html` içindeki `canonical` / `og:url` / `og:image` bağlantılarını yeni domain ile güncelle.
+- `main` branch'ine yapılan her push otomatik olarak üretime dağıtılır (Vercel Git entegrasyonu).
+- Statik bir site olduğu için Vercel'in varsayılan ayarları yeterlidir; `vercel.json` ya da özel build komutu gerekmez.
+- Alan adı Vercel Dashboard → **Settings → Domains** üzerinden yönetilir.
+
+Alan adı değişirse aşağıdaki alanların da güncellenmesi gerekir:
+
+- `<link rel="canonical">`
+- `<meta property="og:url">` ve `<meta property="og:image">`
+- `<meta name="twitter:image">`
+- JSON-LD `Person` şemasındaki `url` ve `image`
 
 ## Lisans
 
