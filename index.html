@@ -1009,8 +1009,9 @@
         </h1>
 
         <p class="hero-kicker reveal" style="transition-delay:.25s">
-          Yirmi yıl gazeteci, sekiz yıl basketbol yazarı, Kort ve Ribaund dergilerinin
-          Genel Yayın Yönetmeni. Gazete odasından dijital yayıncılığa uzanan bir kariyer.
+          <span data-years-since="2004">20</span> yıl gazeteci, sekiz yıl basketbol yazarı,
+          Kort ve Ribaund dergilerinin Genel Yayın Yönetmeni. Gazete odasından dijital yayıncılığa
+          uzanan bir kariyer.
         </p>
 
         <div class="role-pills reveal" style="transition-delay:.35s">
@@ -1084,7 +1085,7 @@
     <div class="about-grid">
       <div class="prose">
         <p>
-          Türkiye’nin önde gelen ulusal gazetelerinde yirmi yılı aşkın deneyime sahip bir gazeteci
+          Türkiye’nin önde gelen ulusal gazetelerinde <span data-years-since="2004">20</span> yılı aşkın deneyime sahip bir gazeteci
           ve dijital medya yöneticisi. <strong>Cumhuriyet, Milliyet ve Hürriyet</strong> başta olmak üzere
           büyük yayın kuruluşlarında muhabirlikten gece editörlüğüne, köşe yazarlığından genel yayın
           yönetmenliğine uzanan bir kariyer çizdi.
@@ -1104,7 +1105,7 @@
 
       <aside class="stats" aria-label="Kariyer özeti">
         <div class="stat">
-          <div class="stat-num">20<em>+</em></div>
+          <div class="stat-num"><span data-years-since="2004">20</span></div>
           <div class="stat-label">Yıllık gazetecilik deneyimi</div>
         </div>
         <div class="stat">
@@ -1131,7 +1132,7 @@
   <div class="container">
     <div class="section-label"><span class="section-number">02</span> / Deneyim</div>
     <h2 class="section-title" id="experience-title">
-      Yirmi yıllık <em>gazetecilik</em> arşivi.
+      <span data-years-since="2004">20</span> yıllık <em>gazetecilik</em> arşivi.
     </h2>
 
     <div class="timeline">
@@ -1252,8 +1253,8 @@
     </h2>
 
     <p class="interviews-intro">
-      Yirmi yıl boyunca uluslararası sporun, Türk basketbolunun ve kamusal hayatın önde gelen
-      isimleriyle yapılmış röportajlardan bir seçki.
+      <span data-years-since="2004">20</span> yıl boyunca uluslararası sporun, Türk basketbolunun ve
+      kamusal hayatın önde gelen isimleriyle yapılmış röportajlardan bir seçki.
     </p>
 
     <div class="name-cloud">
@@ -1478,8 +1479,15 @@
 </footer>
 
 <script>
-  // Footer year
-  document.getElementById('year').textContent = new Date().getFullYear();
+  // Dynamic year + elapsed-years based on current date
+  const currentYear = new Date().getFullYear();
+  document.getElementById('year').textContent = currentYear;
+  document.querySelectorAll('[data-years-since]').forEach(el => {
+    const startYear = parseInt(el.dataset.yearsSince, 10);
+    if (!Number.isNaN(startYear)) {
+      el.textContent = Math.max(0, currentYear - startYear);
+    }
+  });
 
   // Reveal on scroll
   const io = new IntersectionObserver((entries) => {
